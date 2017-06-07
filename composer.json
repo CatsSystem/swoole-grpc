@@ -1,0 +1,26 @@
+{
+    "name": "cat-sys/swoole-grpc",
+    "description": "Grpc Implement base on Swoole Http2 Server",
+    "authors": [
+        {
+            "name": "lidanyang",
+            "email": "lancelot2014@foxmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7",
+        "ext-swoole": ">=1.9.10",
+        "google/protobuf": "^3.3.0",
+        "cat-sys/cat-core": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "grpc\\":"grpc/",
+            "App\\":"App/",
+            "GPBMetadata\\":"GPBMetadata/"
+        },
+        "classmap": [
+            "proto"
+        ]
+    }
+}

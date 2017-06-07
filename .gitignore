@@ -1,0 +1,6 @@
+.idea/
+composer.lock
+vendor/
+*.pid
+test/vendor
+test/composer.lock
