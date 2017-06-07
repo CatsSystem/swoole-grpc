@@ -30,9 +30,9 @@ class MainServer extends HttpServer
      * 初始化函数，在swoole_server启动前执行
      * @param $server
      */
-    public function init($server)
+    public function init(\swoole_server $server)
     {
-        // TODO: Implement init() method.
+
     }
 
 
@@ -107,7 +107,7 @@ class MainServer extends HttpServer
      * @param \swoole_server $server swoole_server对象
      * @param int $workerId Worker进程ID
      */
-    public function onWorkerStart($server, $workerId)
+    public function onWorkerStart(\swoole_server $server, $workerId)
     {
         Globals::$server = $server;
     }
@@ -119,7 +119,7 @@ class MainServer extends HttpServer
      * @param int $src_worker_id 发起任务的Worker进程ID
      * @param mixed $data 任务数据
      */
-    public function onTask($server, $task_id, $src_worker_id, $data)
+    public function onTask(\swoole_server $server, $task_id, $src_worker_id, $data)
     {
         // TODO: Implement onTask() method.
     }
@@ -133,25 +133,5 @@ class MainServer extends HttpServer
     public function onPipeMessage(\swoole_server $server, $from_worker_id, $message)
     {
         // TODO: Implement onPipeMessage() method.
-    }
-
-    /**
-     * 服务器接收新连接时调用此函数
-     * @param \swoole_server $server swoole_server对象
-     * @param int $fd 连接描述符
-     */
-    public function onConnect($server, $fd)
-    {
-        // TODO: Implement onConnect() method.
-    }
-
-    /**
-     * 连接断开时调用此函数
-     * @param \swoole_server $server swoole_server对象
-     * @param int $fd 连接描述符
-     */
-    public function onClose($server, $fd)
-    {
-        // TODO: Implement onClose() method.
     }
 }
