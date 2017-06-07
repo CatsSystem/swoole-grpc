@@ -7,6 +7,7 @@ Grpc Implement base on Swoole Http2 Server
 
 * protobuf 3.3 +
 * grpc 
+* Swoole 1.9.9 +
 
 # Install
 
@@ -19,15 +20,3 @@ Grpc Implement base on Swoole Http2 Server
 make clean && make && make install
 ```
 
-## 引入库
-composer.json
-
-```json
-
-{
-    "require": {
-        "cat-sys/swoole-etcd": "^0.1.0"
-    }
-}
-
-```
