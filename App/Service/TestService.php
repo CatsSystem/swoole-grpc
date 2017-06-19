@@ -21,15 +21,18 @@
 
 namespace App\Service;
 
-class TestService
+use App\Message\TestRequest;
+use App\Message\TestResponse;
+
+class TestService extends TestServiceService
 {
     /**
-     * @param TestRequest $request
-     * @return TestResponse
-     */
-    public function Test(TestRequest $request)
+     * @param TestRequest $argument input argument
+     * @return \App\Message\TestResponse output argument
+     **/
+    protected function Test(TestRequest $argument)
     {
-        var_dump($request->getName());
+        var_dump($argument->getName());
         $response = new TestResponse();
         $response->setStatus(200);
         return $response;

@@ -45,11 +45,9 @@ class MainServer extends HttpServer
     {
         $uri = $request->server['request_uri'];
         $uris = explode("/", $uri);
-        $index = strrpos($uris[1], ".");
-        $namespace = str_replace("." , '\\', substr($uris[1], 0, $index));
 
         $class = str_replace("." , '\\', $uris[1]);
-        $method = $uris[2];
+        $method = "run" . $uris[2];
 
         if(!class_exists($class))
         {
@@ -59,35 +57,13 @@ class MainServer extends HttpServer
             return;
         }
 
-        $request_class = sprintf("%s\\%sRequest", $namespace, $method);
-        if(!class_exists($request_class))
-        {
-            Log::ERROR("System", "$request_class not found");
-            $response->status(403);
-            $response->end();
-            return;
-        }
-
         $rawContent = $data = substr($request->rawContent(), 5);
 
-        $requestObj = new $request_class();
-        if (method_exists($requestObj, 'decode')) {
-            $requestObj->decode($rawContent);
-        } else {
-            $requestObj->mergeFromString($rawContent);
-        }
-
-        $service = new $class();
-
         try {
-            $responseObj = $service->$method($requestObj);
-            if (method_exists($responseObj, 'encode')) {
-                $result =  $responseObj->encode();
-            } elseif (method_exists($responseObj, 'serializeToString')) {
-                $result = $responseObj->serializeToString();
-            } else {
-                $result = "";
-            }
+            $service = new $class();
+
+            $result = $service->$method($rawContent);
+
             $data = pack('CN', 0, strlen($result)) . $result;
             $response->end($data);
         } catch (\Exception $e) {

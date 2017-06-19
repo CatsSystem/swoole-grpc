@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package App.Message;
+
+message TestRequest {
+    bytes   name    = 1;
+    int64   id      = 2;
+    bool    flag    = 3;
+}
+
+message TestResponse {
+    int64   status  = 1;
+}

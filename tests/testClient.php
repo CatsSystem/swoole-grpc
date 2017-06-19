@@ -21,13 +21,13 @@
 require_once __DIR__ . "/vendor/autoload.php";
 require_once __DIR__ . "/../vendor/autoload.php";
 
-require_once __DIR__ . "/rpc_grpc_pb.php";
+require_once __DIR__ . "/TestServiceClient.php";
 
 $client = new \App\Service\TestServiceClient("0.0.0.0:9501", [
     'credentials' => \Grpc\ChannelCredentials::createInsecure(),
 ]);
 
-$request = new \App\Service\TestRequest();
+$request = new \App\Message\TestRequest();
 $request->setName("Name");
 $request->setId(1);
 $request->setFlag(true);

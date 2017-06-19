@@ -2,17 +2,9 @@ syntax = "proto3";
 
 package App.Service;
 
-message TestRequest {
-    bytes   name    = 1;
-    int64   id      = 2;
-    bool    flag    = 3;
-}
-
-message TestResponse {
-    int64   status  = 1;
-}
+import "message.proto";
 
 service TestService
 {
-    rpc Test(TestRequest) returns (TestResponse) {}
+    rpc Test(Message.TestRequest) returns (Message.TestResponse) {}
 }
