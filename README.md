@@ -20,3 +20,6 @@ Grpc Implement base on Swoole Http2 Server
 make clean && make && make install
 ```
 
+# GRPC生成器
+
+由于GRPC本身不支持PHP Server，因此原本的生成器也不支持生成Server端的代码。因此我修改了grpc php generator的代码，使用时，将grpc_generator目录下的文件复制到grpc的`src/compiler`目录下，然后重新编译安装即可。
